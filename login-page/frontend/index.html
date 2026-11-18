@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="card-header">
+        <div class="portal-badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+        </div>
+        <h1>Student Login</h1>
+        <p class="subtitle">Please enter your credentials to access your account</p>
+      </div>
+
+      <div id="messageArea" class="message-area hidden" role="alert" aria-live="polite"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" name="studentId" placeholder="e.g., 0546/15" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" id="loginBtn" class="login-btn">
+          <span class="btn-text">Log In</span>
+          <span class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <div class="server-status">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">Checking system status...</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
