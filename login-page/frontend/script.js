@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
       if (response.ok && data.success) {
         statusDot.className = 'status-dot online';
-        statusText.textContent = 'System Online';
+        statusText.textContent = data.provider === 'supabase' ? 'Supabase Online' : 'System Online';
       } else {
         statusDot.className = 'status-dot offline';
         statusText.textContent = 'System Offline';

@@ -35,19 +35,23 @@ Before running this project, ensure you have the following installed on your mac
 ```
 login-page/
 ├── frontend/
-│   ├── index.html        # Login user interface
-│   ├── style.css         # Styling, card layout, and message feedback
-│   └── script.js         # Form handling, validation, and Fetch API logic
+│   ├── index.html            # Login user interface
+│   ├── register.html         # Registration user interface
+│   ├── style.css             # Unified modern styles and alert states
+│   ├── script.js             # Client-side login logic
+│   └── register.js           # Client-side registration logic
 ├── backend/
-│   ├── server.js         # Express server and /api/login endpoint
-│   ├── db.js             # PostgreSQL connection pool using 'pg'
-│   ├── .env.example      # Example environment variables template
-│   └── .env              # Active environment variables (git-ignored)
+│   ├── server.js             # Express server with /api/login and /api/register
+│   ├── db.js                 # Local PostgreSQL connection pool
+│   ├── supabase.js           # Supabase client initialization
+│   ├── .env.example          # Environment variables template
+│   └── .env                  # Active environment variables (git-ignored)
 ├── database/
-│   └── schema.sql        # Table definition and sample student records
-├── .gitignore            # Git exclusion rules for node_modules and .env
-├── package.json          # Node.js project manifest & dependencies
-└── README.md             # Documentation and usage guide
+│   ├── schema.sql            # Local PostgreSQL table & sample records
+│   └── supabase_schema.sql   # Supabase SQL table & RLS policies
+├── .gitignore                # Git exclusion rules for node_modules and .env
+├── package.json              # Node.js project manifest & dependencies
+└── README.md                 # Documentation and usage guide
 ```
 
 ---
@@ -188,7 +192,57 @@ Retrieves student public profile (excludes password hash).
 
 ---
 
-### 3. Endpoint: `POST /api/login`
+### 3. Endpoint: `POST /api/register`
+Registers a new student account (hashes password with bcrypt and inserts into Supabase / PostgreSQL).
+
+**Request Headers:**
+```http
+Content-Type: application/json
+```
+
+**Request Body Example:**
+```json
+{
+  "student_id": "0100/15",
+  "full_name": "Sara Connor",
+  "password": "securePassword123"
+}
+```
+
+**Response Scenarios:**
+
+1. **Successful Registration (`201 Created`)**:
+   ```json
+   {
+     "success": true,
+     "message": "Registration successful! You can now log in.",
+     "student": {
+       "id": 4,
+       "student_id": "0100/15",
+       "full_name": "Sara Connor"
+     }
+   }
+   ```
+
+2. **Duplicate Student ID (`409 Conflict`)**:
+   ```json
+   {
+     "success": false,
+     "message": "Student ID is already registered"
+   }
+   ```
+
+3. **Validation Error (`400 Bad Request`)**:
+   ```json
+   {
+     "success": false,
+     "message": "All fields are required"
+   }
+   ```
+
+---
+
+### 4. Endpoint: `POST /api/login`
 Authenticates a student by verifying their Student ID and password.
 
 **Request Headers:**

@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS students (
+    id BIGSERIAL PRIMARY KEY,
+    student_id VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+ALTER TABLE students ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public select" ON students FOR SELECT USING (true);
+CREATE POLICY "Allow public insert" ON students FOR INSERT WITH CHECK (true);

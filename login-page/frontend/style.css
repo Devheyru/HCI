@@ -181,6 +181,29 @@ body {
   }
 }
 
+.auth-switch {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #627d98;
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.switch-link {
+  color: #2b6cb0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.switch-link:hover {
+  color: #1a365d;
+  text-decoration: underline;
+}
+
 .server-status {
   display: flex;
   align-items: center;

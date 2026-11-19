@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal - Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="card-header">
+        <div class="portal-badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <line x1="19" y1="8" x2="19" y2="14" />
+            <line x1="22" y1="11" x2="16" y2="11" />
+          </svg>
+        </div>
+        <h1>Create Account</h1>
+        <p class="subtitle">Register your student account to get started</p>
+      </div>
+
+      <div id="messageArea" class="message-area hidden" role="alert" aria-live="polite"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" name="studentId" placeholder="e.g., 0546/15" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g., Heyru Awel" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Minimum 6 characters" autocomplete="new-password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" required>
+        </div>
+
+        <button type="submit" id="registerBtn" class="login-btn">
+          <span class="btn-text">Register</span>
+          <span class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <div class="auth-switch">
+        <span>Already have an account?</span>
+        <a href="index.html" class="switch-link">Log In</a>
+      </div>
+
+      <div class="server-status">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">Checking system status...</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+</html>
